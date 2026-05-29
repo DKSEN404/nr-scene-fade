@@ -1,5 +1,17 @@
 # Changelog / Registro de Cambios
 
+## v1.0.2 (2026-05-29)
+
+### English
+- Fixed: i18n keys not resolving in transition form (wrong `{{localize}}` paths — missing `.content`, `.background`, `.transition` segments)
+- Fixed: `src.split is not a function` crash when playing transition (duplicate `name="bgImg"` caused form data to produce an array)
+- i18n: All form labels now display correctly
+
+### Español
+- Corregido: Claves i18n sin resolver en el formulario de transición (rutas `{{localize}}` incorrectas — faltaban segmentos `.content`, `.background`, `.transition`)
+- Corregido: Error `src.split is not a function` al reproducir transición (el `name="bgImg"` duplicado hacía que los datos del formulario produjeran un array)
+- i18n: Todas las etiquetas del formulario se muestran correctamente ahora
+
 ## v1.0.1 (2026-05-29)
 
 ### English
