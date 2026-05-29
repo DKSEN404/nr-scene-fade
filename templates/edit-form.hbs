@@ -1,4 +1,4 @@
-<form class="nr-edit-form flexcol" autocomplete="off" novalidate>
+<form class="nr-edit-form flexcol" autocomplete="off" novalidate data-content-mode="{{contentMode}}">
   <nav class="tabs" data-group="primary">
     <a class="item active" data-tab="content"><i class="fas fa-file-lines"></i> {{localize "nr-scene-fade.form.tab.content"}}</a>
     <a class="item" data-tab="effects"><i class="fas fa-wand-magic-sparkles"></i> {{localize "nr-scene-fade.form.tab.effects"}}</a>
@@ -20,29 +20,57 @@
       {{/if}}
 
       <h2>{{localize "nr-scene-fade.form.content.header"}}</h2>
+
       <div class="form-group">
-        <label>{{localize "nr-scene-fade.form.content.fontColor.label"}}</label>
+        <label>{{localize "nr-scene-fade.form.content.contentMode.label"}}</label>
         <div class="form-fields">
-          <color-picker name="fontColor" value="{{fontColor}}"></color-picker>
+          <select name="contentMode" data-dtype="String">
+            <option value="richtext" {{#if (eq contentMode "richtext")}}selected{{/if}}>{{localize "nr-scene-fade.form.content.contentMode.richtext"}}</option>
+            <option value="html" {{#if (eq contentMode "html")}}selected{{/if}}>{{localize "nr-scene-fade.form.content.contentMode.html"}}</option>
+          </select>
         </div>
       </div>
-      <div class="form-group">
-        <label>{{localize "nr-scene-fade.form.content.fontFamily.label"}}</label>
-        <div class="form-fields">
-          <input name="fontFamily" type="text" value="{{fontFamily}}">
+
+      <div class="nr-editor-section">
+        <div class="form-group">
+          <label>{{localize "nr-scene-fade.form.content.fontColor.label"}}</label>
+          <div class="form-fields">
+            <color-picker name="fontColor" value="{{fontColor}}"></color-picker>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{localize "nr-scene-fade.form.content.fontFamily.label"}}</label>
+          <div class="form-fields">
+            <input name="fontFamily" type="text" value="{{fontFamily}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{localize "nr-scene-fade.form.content.fontSize.label"}}</label>
+          <div class="form-fields">
+            <input name="fontSize" type="number" value="{{fontSize}}">
+          </div>
+        </div>
+        {{#if isEdit}}
+        <div class="form-group editor-box">
+          {{editor content target="content" button=false editable=true engine="prosemirror" collaborate=false}}
+        </div>
+        {{/if}}
+      </div>
+
+      <div class="nr-code-section">
+        <div class="form-group">
+          <label>{{localize "nr-scene-fade.form.content.rawContent.label"}}</label>
+          <div class="form-fields">
+            <textarea name="rawContent" class="nr-code-editor" rows="15">{{rawContent}}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{localize "nr-scene-fade.form.content.customCSS.label"}}</label>
+          <div class="form-fields">
+            <textarea name="customCSS" class="nr-code-editor nr-code-editor--css" rows="8" placeholder="{{localize "nr-scene-fade.form.content.customCSS.placeholder"}}">{{customCSS}}</textarea>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label>{{localize "nr-scene-fade.form.content.fontSize.label"}}</label>
-        <div class="form-fields">
-          <input name="fontSize" type="number" value="{{fontSize}}">
-        </div>
-      </div>
-      {{#if isEdit}}
-      <div class="form-group editor-box">
-        {{editor content target="content" button=false editable=true engine="prosemirror" collaborate=false}}
-      </div>
-      {{/if}}
 
       <h2>{{localize "nr-scene-fade.form.background.header"}}</h2>
       <div class="form-group">
@@ -125,6 +153,10 @@
       <div class="form-group">
         <label>{{localize "nr-scene-fade.form.other.activateScene.label"}}</label>
         <input type="checkbox" name="activateScene" data-dtype="Boolean" {{checked activateScene}}>
+      </div>
+      <div class="form-group">
+        <label>{{localize "nr-scene-fade.form.other.fullscreen.label"}}</label>
+        <input type="checkbox" name="fullscreen" data-dtype="Boolean" {{checked fullscreen}}>
       </div>
     </div>
   </div>

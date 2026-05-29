@@ -37,6 +37,8 @@ export default class NRSceneFade {
     if (typeof merged.bgImg !== 'string') merged.bgImg = '';
     if (typeof merged.audio !== 'string') merged.audio = '';
     if (typeof merged.content !== 'string') merged.content = '';
+    if (typeof merged.rawContent !== 'string') merged.rawContent = '';
+    if (typeof merged.customCSS !== 'string') merged.customCSS = '';
 
     await this.#createOverlay(merged);
     await this.#fadeIn(merged);
@@ -98,9 +100,13 @@ export default class NRSceneFade {
     const showCloseButton = game.user?.isGM || options.allowPlayersToEnd;
     const zIndex = game.user?.isGM || options.showUI ? 5000 : 1;
 
+    const content = options.rawContent || options.content || '';
+
     const data = {
       style: options.style || '',
-      content: options.content || '',
+      content,
+      customCSS: options.customCSS || '',
+      fullscreen: !!options.fullscreen,
       bgImg: options.bgImg || null,
       bgColor: options.bgColor || '#0a0a0a',
       accentColor: options.accentColor || '#00ff41',

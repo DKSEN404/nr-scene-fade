@@ -26,6 +26,11 @@ export default class EditTransitionForm extends DefaultOptionsForm {
       description: game.i18n.localize(p.description)
     }));
 
+    const isHtml = data.contentMode === 'html';
+    const content = isHtml
+      ? (data.rawContent || '')
+      : await TextEditor.enrichHTML(data.content || '', { secrets: true, async: true });
+
     return {
       ...data,
       isEdit: true,
@@ -35,10 +40,7 @@ export default class EditTransitionForm extends DefaultOptionsForm {
       canvasEffects: EFFECTS_CANVAS,
       selectedDomEffects: data.domEffects || [],
       selectedCanvasEffects: data.canvasEffects || [],
-      content: await TextEditor.enrichHTML(data.content || '', {
-        secrets: true,
-        async: true
-      })
+      content
     };
   }
 
@@ -54,14 +56,20 @@ export default class EditTransitionForm extends DefaultOptionsForm {
 
   activateListeners(html) {
     super.activateListeners(html);
+
+    html.on('change', 'select[name="contentMode"]', (event) => {
+      const form = event.currentTarget.closest('.nr-edit-form');
+      if (form) form.dataset.contentMode = event.currentTarget.value;
+    });
+
     html.on('change', 'select[name="presetId"]', async (event) => {
       const presetId = event.target.value;
       const presets = getPresets();
       const preset = presets.get(presetId);
       if (!preset) return;
 
-      const theme = preset.theme || {};
       const target = event.currentTarget.closest('.nr-edit-form');
+      const theme = preset.theme || {};
       Object.entries(theme).forEach(([key, value]) => {
         const input = target.querySelector(`[name="${key}"]`);
         if (input) {
@@ -79,6 +87,26 @@ export default class EditTransitionForm extends DefaultOptionsForm {
       canvasChecks.forEach((cb) => {
         cb.checked = preset.effects?.canvas?.includes(cb.value) || false;
       });
+
+      const rawContentInput = target.querySelector('[name="rawContent"]');
+      if (rawContentInput && preset.rawContent) {
+        const modeSelect = target.querySelector('[name="contentMode"]');
+        if (modeSelect) {
+          modeSelect.value = 'html';
+          target.dataset.contentMode = 'html';
+        }
+        rawContentInput.value = preset.rawContent;
+      }
+
+      const customCSSInput = target.querySelector('[name="customCSS"]');
+      if (customCSSInput && preset.customCSS) {
+        customCSSInput.value = preset.customCSS;
+      }
+
+      const fullscreenCheck = target.querySelector('[name="fullscreen"]');
+      if (fullscreenCheck && preset.fullscreen != null) {
+        fullscreenCheck.checked = preset.fullscreen;
+      }
     });
   }
 }

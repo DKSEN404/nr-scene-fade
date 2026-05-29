@@ -450,3 +450,37 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ========== Content mode toggle ========== */
+
+.nr-edit-form[data-content-mode="html"] .nr-editor-section {
+  display: none;
+}
+
+.nr-edit-form[data-content-mode="richtext"] .nr-code-section {
+  display: none;
+}
+
+/* ========== Code editor textarea ========== */
+
+.nr-code-editor {
+  width: 100%;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: var(--font-size-13);
+  line-height: 1.45;
+  background: rgba(0, 0, 0, 0.85);
+  color: #d4d4d4;
+  border: 1px solid var(--color-border-light-primary);
+  padding: 8px 10px;
+  resize: vertical;
+  tab-size: 2;
+}
+
+.nr-code-editor:focus {
+  outline: none;
+  border-color: var(--color-border-highlight);
+}
+
+.nr-code-editor--css {
+  color: #9cdcfe;
+}

@@ -33,6 +33,16 @@
       },
       "content": {
         "header": "Contenido",
+        "contentMode": {
+          "label": "Modo de Contenido",
+          "richtext": "Editor de Texto",
+          "html": "HTML Directo"
+        },
+        "rawContent": { "label": "Contenido HTML" },
+        "customCSS": {
+          "label": "CSS Personalizado",
+          "placeholder": "@keyframes, estilos .class, etc."
+        },
         "fontColor": { "label": "Color de Fuente" },
         "fontFamily": { "label": "Familia de Fuente" },
         "fontSize": { "label": "Tamaño de Fuente" }
@@ -59,7 +69,8 @@
         "allowPlayersToEnd": { "label": "Permitir a jugadores terminar transición" },
         "gmEndAll": { "label": "DJ puede terminar todas las transiciones" },
         "gmHide": { "label": "Ocultar transición al DJ" },
-        "activateScene": { "label": "Activar escena al reproducir" }
+        "activateScene": { "label": "Activar escena al reproducir" },
+        "fullscreen": { "label": "Modo pantalla completa (sin contenedor interno)" }
       },
       "save": "Guardar",
       "reset": "Restablecer Valores"

@@ -30,6 +30,11 @@ export default class DefaultOptionsForm extends FormApplication {
   activateListeners(html) {
     super.activateListeners(html);
 
+    html.on('change', 'select[name="contentMode"]', (event) => {
+      const form = event.currentTarget.closest('.nr-edit-form');
+      if (form) form.dataset.contentMode = event.currentTarget.value;
+    });
+
     html.on('click', '.tabs .item', (event) => {
       event.preventDefault();
       const item = event.currentTarget;

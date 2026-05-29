@@ -33,6 +33,16 @@
       },
       "content": {
         "header": "Content",
+        "contentMode": {
+          "label": "Content Mode",
+          "richtext": "Rich Text Editor",
+          "html": "Direct HTML"
+        },
+        "rawContent": { "label": "HTML Content" },
+        "customCSS": {
+          "label": "Custom CSS",
+          "placeholder": "@keyframes, .class styles, etc."
+        },
         "fontColor": { "label": "Font Color" },
         "fontFamily": { "label": "Font Family" },
         "fontSize": { "label": "Font Size" }
@@ -59,7 +69,8 @@
         "allowPlayersToEnd": { "label": "Allow players to end transition" },
         "gmEndAll": { "label": "GM can end all transitions" },
         "gmHide": { "label": "Hide transition from GM" },
-        "activateScene": { "label": "Activate scene on play" }
+        "activateScene": { "label": "Activate scene on play" },
+        "fullscreen": { "label": "Fullscreen mode (bypass content wrapper)" }
       },
       "save": "Save",
       "reset": "Reset to Defaults"

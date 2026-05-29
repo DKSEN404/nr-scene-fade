@@ -12,6 +12,10 @@ Hooks.once('init', function () {
     return Array.isArray(arr) && arr.includes(val);
   });
 
+  Handlebars.registerHelper('eq', function (a, b) {
+    return a === b;
+  });
+
   nrFade = new NRSceneFade();
   initDefaultPresets();
 

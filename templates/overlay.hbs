@@ -1,4 +1,5 @@
 <div id="nr-scene-fade-overlay" class="nr-visible" style="background-color:{{bgColor}}; opacity:0; z-index:{{zIndex}};">
+  {{#if customCSS}}<style>{{{customCSS}}}</style>{{/if}}
   {{#if isVideo}}
   <div class="nr-video-overlay" style="opacity:{{bgOpacity}}; background-color:{{bgColor}};"></div>
   <video class="nr-bg-video" autoplay{{#if bgLoop}} loop{{/if}}{{#if bgMuted}} muted{{/if}}>
@@ -13,6 +14,9 @@
       <i class="fas fa-play"></i>
     </button>
     {{/if}}
+    {{#if fullscreen}}
+    {{{content}}}
+    {{else}}
     <div class="nr-inner" id="nr-inner" style="
       max-width:780px;
       width:90%;
@@ -25,6 +29,7 @@
     ">
       {{{content}}}
     </div>
+    {{/if}}
   </div>
   <canvas id="nr-cfx-canvas"></canvas>
 </div>
