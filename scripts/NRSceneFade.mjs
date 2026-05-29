@@ -1,5 +1,6 @@
 import { MODULE_ID, TEMPLATES } from './constants.mjs';
 import { TransitionRenderer } from './TransitionRenderer.mjs';
+import * as Socket from './SocketManager.mjs';
 
 let _instance = null;
 
@@ -9,6 +10,7 @@ export default class NRSceneFade {
   #isActive = false;
   #resolveCurrent = null;
   #currentOptions = null;
+  #audio = null;
 
   constructor() {
     if (_instance) return _instance;
@@ -29,13 +31,15 @@ export default class NRSceneFade {
     this.#isActive = true;
     this.#currentOptions = options;
 
-    const merged = foundry.utils.mergeObject(
-      game.settings.get(MODULE_ID, 'default-options') || {},
-      options
-    );
+    const defaults = game.settings.get(MODULE_ID, 'default-options') || {};
+    const merged = foundry.utils.mergeObject(foundry.utils.mergeObject({}, defaults), options);
 
     await this.#createOverlay(merged);
     await this.#fadeIn(merged);
+
+    if (merged.audio) {
+      this.#playAudio(merged);
+    }
 
     this.#renderer = new TransitionRenderer(merged);
     await this.#renderer.play();
@@ -57,6 +61,8 @@ export default class NRSceneFade {
       return;
     }
 
+    this.#stopAudio();
+
     if (this.#renderer) {
       await this.#renderer.outro();
     }
@@ -69,16 +75,29 @@ export default class NRSceneFade {
   }
 
   async #createOverlay(options) {
+    const isVideo = this.#isVideo(options.bgImg || '');
+    const sourceType = this.#getVideoType(options.bgImg || '');
+    const showCloseButton = game.user?.isGM || options.allowPlayersToEnd;
+    const zIndex = game.user?.isGM || options.showUI ? 5000 : 1;
+
     const data = {
       style: options.style || '',
       content: options.content || '',
       bgImg: options.bgImg || null,
-      bgColor: options.bgColor || '#000000',
+      bgColor: options.bgColor || '#0a0a0a',
       accentColor: options.accentColor || '#00ff41',
-      duration: options.duration || 4000,
-      overlayClass: options.overlayClass || '',
       fontColor: options.fontColor || '#f0d000',
-      fontSize: options.fontSize || 28
+      fontSize: options.fontSize || 28,
+      isVideo,
+      sourceType,
+      bgLoop: options.bgLoop ?? true,
+      bgMuted: options.bgMuted ?? true,
+      bgSize: options.bgSize || 'cover',
+      bgPos: options.bgPos || 'center center',
+      bgOpacity: options.bgOpacity ?? 0.95,
+      showCloseButton,
+      zIndex,
+      fontFamily: options.fontFamily || "'Share Tech Mono', 'Courier New', monospace"
     };
 
     const wrapper = document.createElement('div');
@@ -87,6 +106,11 @@ export default class NRSceneFade {
 
     const html = await renderTemplate(TEMPLATES.OVERLAY, data);
     wrapper.innerHTML = html;
+
+    const closeBtn = wrapper.querySelector('#nr-scene-fade-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => this.#onCloseClick(options));
+    }
 
     this.#overlay = wrapper;
   }
@@ -108,6 +132,8 @@ export default class NRSceneFade {
   }
 
   #cleanup() {
+    this.#stopAudio();
+
     if (this.#renderer) {
       this.#renderer.destroy();
       this.#renderer = null;
@@ -118,6 +144,46 @@ export default class NRSceneFade {
     this.#overlay = null;
     this.#isActive = false;
     this.#currentOptions = null;
+  }
+
+  #isVideo(src) {
+    if (!src) return false;
+    const ext = src.split('.').pop()?.split('?')[0]?.toLowerCase();
+    return ext === 'webm' || ext === 'mp4';
+  }
+
+  #getVideoType(src) {
+    if (!src) return 'video/mp4';
+    if (src.toLowerCase().endsWith('webm')) return 'video/webm';
+    return 'video/mp4';
+  }
+
+  #playAudio(options) {
+    const src = options.audio;
+    if (!src) return;
+    if (game.audio.locked) {
+      console.log(`${MODULE_ID} | Audio playback locked`);
+      return;
+    }
+    const volume = options.volume ?? 0.7;
+    const loop = options.audioLoop ?? false;
+    AudioHelper.play({ src, volume, loop }, false).then((audio) => {
+      this.#audio = audio;
+    }).catch(() => {});
+  }
+
+  #stopAudio() {
+    if (this.#audio?.playing) {
+      this.#audio.stop();
+    }
+    this.#audio = null;
+  }
+
+  #onCloseClick(options) {
+    if (game.user?.isGM && options.gmEndAll) {
+      Socket.executeForEveryone({ action: 'stop' });
+    }
+    this.stop(false);
   }
 
   async executeAction(options) {

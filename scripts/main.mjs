@@ -8,6 +8,10 @@ import { initDefaultPresets } from './presets/Registry.mjs';
 let nrFade = null;
 
 Hooks.once('init', function () {
+  Handlebars.registerHelper('contains', function (arr, val) {
+    return Array.isArray(arr) && arr.includes(val);
+  });
+
   nrFade = new NRSceneFade();
   initDefaultPresets();
 

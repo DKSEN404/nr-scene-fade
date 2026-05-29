@@ -29,6 +29,7 @@
       "content": {
         "header": "Contenido",
         "fontColor": { "label": "Color de Fuente" },
+        "fontFamily": { "label": "Familia de Fuente" },
         "fontSize": { "label": "Tamaño de Fuente" }
       },
       "background": {
@@ -55,7 +56,8 @@
         "gmHide": { "label": "Ocultar transición al DJ" },
         "activateScene": { "label": "Activar escena al reproducir" }
       },
-      "save": "Guardar"
+      "save": "Guardar",
+      "reset": "Restablecer Valores"
     },
     "close": "Cerrar",
     "presets": {

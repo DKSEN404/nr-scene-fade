@@ -27,6 +27,14 @@ export default class DefaultOptionsForm extends FormApplication {
     };
   }
 
+  activateListeners(html) {
+    super.activateListeners(html);
+    html.on('click', '[data-action="reset"]', async () => {
+      await game.settings.set(MODULE_ID, SETTINGS.DEFAULT_OPTIONS, DEFAULT_SETTING);
+      this.render(true);
+    });
+  }
+
   async _updateObject(event, formData) {
     const expanded = foundry.utils.expandObject(formData);
     expanded.domEffects = expanded.domEffects || [];

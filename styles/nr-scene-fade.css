@@ -30,6 +30,39 @@
   opacity: 0;
 }
 
+/* ─── Video background ─── */
+#nr-scene-fade-overlay .nr-bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#nr-scene-fade-overlay .nr-video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#nr-scene-fade-overlay .nr-bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+}
+
 /* ─── Canvas de efectos ─── */
 #nr-scene-fade-canvas {
   position: fixed;

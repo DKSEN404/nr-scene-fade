@@ -6,11 +6,7 @@
       <label>{{localize "nr-scene-fade.form.preset.label"}}</label>
       <div class="form-fields">
         <select name="presetId" data-dtype="String">
-          {{#select presetId}}
-          {{#each presets}}
-          <option value="{{this.id}}">{{this.label}}</option>
-          {{/each}}
-          {{/select}}
+          {{selectOptions presets selected=presetId labelAttr="label" valueAttr="id"}}
         </select>
       </div>
     </div>
@@ -20,7 +16,13 @@
     <div class="form-group">
       <label>{{localize "nr-scene-fade.form.fontColor.label"}}</label>
       <div class="form-fields">
-        {{ colorPicker id="fontColor" name="fontColor" value=fontColor }}
+        <color-picker name="fontColor" value="{{fontColor}}"></color-picker>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "nr-scene-fade.form.fontFamily.label"}}</label>
+      <div class="form-fields">
+        <input name="fontFamily" type="text" value="{{fontFamily}}">
       </div>
     </div>
     <div class="form-group">
@@ -39,14 +41,14 @@
     <div class="form-group">
       <label>{{localize "nr-scene-fade.form.bgImg.label"}}</label>
       <div class="form-fields">
-        {{filePicker target="bgImg" type="imagevideo"}}
+        <file-picker name="bgImg" type="imagevideo" value="{{bgImg}}"></file-picker>
         <input class="imagevideo" type="text" name="bgImg" value="{{bgImg}}">
       </div>
     </div>
     <div class="form-group">
       <label>{{localize "nr-scene-fade.form.bgColor.label"}}</label>
       <div class="form-fields">
-        {{ colorPicker id="bgColor" name="bgColor" value=bgColor }}
+        <color-picker name="bgColor" value="{{bgColor}}"></color-picker>
       </div>
     </div>
     <div class="form-group">
@@ -119,6 +121,12 @@
     </div>
   </div>
   <footer>
+    {{#unless isEdit}}
+    <button type="button" data-action="reset">
+      <i class="fas fa-arrow-rotate-left"></i>
+      {{localize "nr-scene-fade.form.reset"}}
+    </button>
+    {{/unless}}
     <button type="submit">
       <i class="fas fa-solid fa-floppy-disk"></i>
       {{localize "nr-scene-fade.form.save"}}

@@ -29,6 +29,7 @@
       "content": {
         "header": "Content",
         "fontColor": { "label": "Font Color" },
+        "fontFamily": { "label": "Font Family" },
         "fontSize": { "label": "Font Size" }
       },
       "background": {
@@ -55,7 +56,8 @@
         "gmHide": { "label": "Hide transition from GM" },
         "activateScene": { "label": "Activate scene on play" }
       },
-      "save": "Save"
+      "save": "Save",
+      "reset": "Reset to Defaults"
     },
     "close": "Close",
     "presets": {

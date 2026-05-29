@@ -35,7 +35,7 @@ export async function executeAction(options) {
   }
 
   await api.stop(true);
-  api.play(options?.presetId || 'amber-terminal', options, false);
+  api.play({ ...options, presetId: options?.presetId || 'amber-terminal' });
 }
 
 function macroArr(...inAttributes) {

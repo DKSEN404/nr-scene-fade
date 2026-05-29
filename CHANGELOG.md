@@ -1,5 +1,31 @@
 # Changelog / Registro de Cambios
 
+## v1.0.1 (2026-05-29)
+
+### English
+- Fixed: `Missing helper: "contains"` crash when opening transition form
+- Fixed: `api.play()` call passing `presetId` as positional argument instead of options object
+- Added: Audio playback support (`audio` field, play/stop with fade out)
+- Added: Video background support (.webm/.mp4 detection, `<video>` overlay)
+- Added: Close button on overlay with GM-end-all socket sync
+- Added: Dynamic z-index based on `showUI` and GM status
+- Added: `fontFamily` input field to transition form
+- Added: Reset button in Default Options form
+- Migrated: Deprecated Handlebars helpers to Foundry v12 APIs (`selectOptions`, `<color-picker>`, `<file-picker>`)
+- i18n: Added `fontFamily.label` and `reset` keys
+
+### Español
+- Corregido: Error `Missing helper: "contains"` al abrir el formulario de transición
+- Corregido: Llamada a `api.play()` que pasaba `presetId` como argumento posicional en vez de objeto options
+- Añadido: Reproducción de audio (campo `audio`, play/stop con fade out)
+- Añadido: Soporte de video de fondo (detección .webm/.mp4, overlay `<video>`)
+- Añadido: Botón de cierre en overlay con sincronización GM-end-all por socket
+- Añadido: z-index dinámico según `showUI` y estado de GM
+- Añadido: Campo `fontFamily` en el formulario de transición
+- Añadido: Botón de reset en formulario de opciones por defecto
+- Migrado: Helpers Handlebars obsoletos a APIs de Foundry v12 (`selectOptions`, `<color-picker>`, `<file-picker>`)
+- i18n: Añadidas claves `fontFamily.label` y `reset`
+
 ## v1.0.0 (2026-05-29)
 
 ### English

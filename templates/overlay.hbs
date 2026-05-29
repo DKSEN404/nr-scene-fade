@@ -1,5 +1,18 @@
-<div id="nr-scene-fade-overlay" class="nr-visible" style="background-color:{{bgColor}}; opacity:0;">
+<div id="nr-scene-fade-overlay" class="nr-visible" style="background-color:{{bgColor}}; opacity:0; z-index:{{zIndex}};">
+  {{#if isVideo}}
+  <div class="nr-video-overlay" style="opacity:{{bgOpacity}}; background-color:{{bgColor}};"></div>
+  <video class="nr-bg-video" autoplay{{#if bgLoop}} loop{{/if}}{{#if bgMuted}} muted{{/if}}>
+    <source src="{{bgImg}}" type="{{sourceType}}">
+  </video>
+  {{else if bgImg}}
+  <div class="nr-bg-image" style="background-image:url({{bgImg}}); opacity:{{bgOpacity}}; background-size:{{bgSize}}; background-position:{{bgPos}};"></div>
+  {{/if}}
   <div class="nr-content-wrapper">
+    {{#if showCloseButton}}
+    <button type="button" id="nr-scene-fade-close">
+      <i class="fas fa-xmark"></i>
+    </button>
+    {{/if}}
     <div class="nr-inner" id="nr-inner" style="
       max-width:780px;
       width:90%;
