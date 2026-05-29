@@ -104,12 +104,9 @@ export default class NRSceneFade {
       fontFamily: options.fontFamily || "'Share Tech Mono', 'Courier New', monospace"
     };
 
-    const wrapper = document.createElement('div');
-    wrapper.id = 'nr-scene-fade-overlay';
-    document.body.appendChild(wrapper);
-
     const html = await renderTemplate(TEMPLATES.OVERLAY, data);
-    wrapper.innerHTML = html;
+    document.body.insertAdjacentHTML('beforeend', html);
+    const wrapper = document.getElementById('nr-scene-fade-overlay');
 
     const closeBtn = wrapper.querySelector('#nr-scene-fade-close');
     if (closeBtn) {

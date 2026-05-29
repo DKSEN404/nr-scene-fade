@@ -1,5 +1,13 @@
 # Changelog / Registro de Cambios
 
+## v0.0.2 (2026-05-29)
+
+### English
+- Fixed: Overlay never displayed — `#createOverlay` created a wrapper `<div>` with `id="nr-scene-fade-overlay"` and then inserted the Handlebars template as inner HTML, which also created a `<div id="nr-scene-fade-overlay">` (duplicate ID). `getElementById()` returned the outer wrapper which had `display: none` (no `nr-visible` class), hiding the entire overlay. Removed the wrapper element — the template now appends directly to `document.body`.
+
+### Español
+- Corregido: Overlay nunca se mostraba — `#createOverlay` creaba un wrapper `<div>` con `id="nr-scene-fade-overlay"` y luego insertaba el template Handlebars como inner HTML, que también creaba un `<div id="nr-scene-fade-overlay">` (ID duplicado). `getElementById()` devolvía el wrapper externo con `display: none` (sin clase `nr-visible`), ocultando todo el overlay. Se eliminó el wrapper — el template ahora se inserta directamente en `document.body`.
+
 ## v0.0.1 (2026-05-29)
 
 ### English
