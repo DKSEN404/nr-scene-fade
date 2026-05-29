@@ -34,7 +34,7 @@ function addSceneButtons(hookName, contextOptions) {
       const scene = game.scenes?.get(li.data(idField));
       const transition = scene.getFlag(MODULE_ID, 'transition');
       if (!transition) return;
-      const options = { ...transition.options, fromSocket: true };
+      const options = { ...transition.options, fromSocket: true, sceneId: scene.id };
       Socket.executeForEveryone(options);
     }
   });

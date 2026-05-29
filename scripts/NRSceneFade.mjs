@@ -46,11 +46,23 @@ export default class NRSceneFade {
     }
 
     this.#renderer = new TransitionRenderer(merged);
-    await this.#renderer.play();
+    this.#renderer.play();
 
-    return new Promise((resolve) => {
-      this.#resolveCurrent = resolve;
-    });
+    const displayTime = merged.delay || 7000;
+    await new Promise((r) => setTimeout(r, displayTime));
+
+    await this.#fadeOut(merged);
+    this.#cleanup();
+
+    if (this.#resolveCurrent) {
+      this.#resolveCurrent({ forced: false });
+      this.#resolveCurrent = null;
+    }
+
+    if (merged.activateScene && merged.sceneId) {
+      const scene = game.scenes?.get(merged.sceneId);
+      if (scene) await scene.view();
+    }
   }
 
   async stop(force = false) {
@@ -125,6 +137,15 @@ export default class NRSceneFade {
       overlay.style.opacity = '1';
     });
     await new Promise((r) => setTimeout(r, fadeIn));
+  }
+
+  async #fadeOut(options) {
+    const overlay = this.#overlay;
+    if (!overlay) return;
+    const fadeOut = options.fadeOut || 1000;
+    overlay.style.transition = `opacity ${fadeOut}ms ease`;
+    overlay.style.opacity = '0';
+    await new Promise((r) => setTimeout(r, fadeOut));
   }
 
   async #render(options) {

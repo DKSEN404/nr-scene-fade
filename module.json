@@ -2,7 +2,7 @@
   "id": "nr-scene-fade",
   "title": "NR Scene Fade",
   "description": "Transiciones de escena cyberpunk con efectos DOM y Canvas para Nova-Red Hub. Fundidos, glitch, scanlines, lluvia digital, partículas, ruido estático y rejilla 3D.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "authors": [
     {
@@ -44,7 +44,7 @@
   },
   "url": "https://github.com/DKSEN404/nr-scene-fade",
   "manifest": "https://github.com/DKSEN404/nr-scene-fade/releases/latest/download/module.json",
-  "download": "https://github.com/DKSEN404/nr-scene-fade/releases/download/v0.0.2/module.zip",
+  "download": "https://github.com/DKSEN404/nr-scene-fade/releases/download/v0.0.3/module.zip",
   "readme": "README.md",
   "bugs": "https://github.com/DKSEN404/nr-scene-fade/issues",
   "relationships": {

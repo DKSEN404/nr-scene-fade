@@ -1,5 +1,17 @@
 # Changelog / Registro de Cambios
 
+## v0.0.3 (2026-05-29)
+
+### English
+- Fixed: Transition overlay stayed frozen after the display period — `play()` never called `#fadeOut` or `stop()`, leaving the overlay visible permanently. Added `#fadeOut()` and auto-close lifecycle: fadeIn → display for `delay` ms → fadeOut → cleanup.
+- Fixed: `activateScene` option was saved in the form but never executed during play. Added `sceneId` to play options in `ContextMenu.mjs` and `scene.view()` call in `play()` after fadeOut.
+- Added: `#fadeOut(options)` method that animates overlay opacity to 0 over `fadeOut` ms.
+
+### Español
+- Corregido: El overlay de la transición se quedaba congelado — `play()` nunca llamaba a `#fadeOut` ni `stop()`, dejando el overlay visible permanentemente. Se agregó `#fadeOut()` y ciclo de vida automático: fadeIn → mostrar por `delay` ms → fadeOut → limpieza.
+- Corregido: La opción `activateScene` se guardaba en el formulario pero nunca se ejecutaba al reproducir. Se agregó `sceneId` a las opciones de play en `ContextMenu.mjs` y llamada a `scene.view()` en `play()` después del fadeOut.
+- Añadido: Método `#fadeOut(options)` que anima la opacidad del overlay a 0 durante `fadeOut` ms.
+
 ## v0.0.2 (2026-05-29)
 
 ### English
