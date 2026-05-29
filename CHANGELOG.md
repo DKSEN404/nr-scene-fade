@@ -1,5 +1,15 @@
 # Changelog / Registro de Cambios
 
+## v1.0.6 (2026-05-29)
+
+### English
+- Fixed: `form.querySelector is not a function` crash when selecting a preset (Foundry v12 `this.element` is jQuery, not HTMLElement)
+- Fixed: Save button, background section, and preset theme application not working (consequence of the above crash)
+
+### Español
+- Corregido: Error `form.querySelector is not a function` al seleccionar un preset (en Foundry v12 `this.element` es jQuery, no HTMLElement)
+- Corregido: Botón de guardar, sección de fondo y aplicación de tema de preset no funcionaban (consecuencia del crash anterior)
+
 ## v1.0.5 (2026-05-29)
 
 ### English

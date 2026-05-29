@@ -60,23 +60,21 @@ export default class EditTransitionForm extends DefaultOptionsForm {
       const preset = presets.get(presetId);
       if (!preset) return;
 
-      const theme = preset.theme || {};
-      const form = this.element;
-
+      const target = event.currentTarget.closest('.nr-edit-form');
       Object.entries(theme).forEach(([key, value]) => {
-        const input = form.querySelector(`[name="${key}"]`);
+        const input = target.querySelector(`[name="${key}"]`);
         if (input) {
           input.value = value;
           if (input.type === 'checkbox') input.checked = !!value;
         }
       });
 
-      const domChecks = form.querySelectorAll('[name="domEffects"]');
+      const domChecks = target.querySelectorAll('[name="domEffects"]');
       domChecks.forEach((cb) => {
         cb.checked = preset.effects?.dom?.includes(cb.value) || false;
       });
 
-      const canvasChecks = form.querySelectorAll('[name="canvasEffects"]');
+      const canvasChecks = target.querySelectorAll('[name="canvasEffects"]');
       canvasChecks.forEach((cb) => {
         cb.checked = preset.effects?.canvas?.includes(cb.value) || false;
       });
