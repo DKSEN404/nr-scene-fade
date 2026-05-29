@@ -38,9 +38,9 @@
     "styles/nr-scene-fade.css"
   ],
   "compatibility": {
-    "minimum": 12,
-    "verified": 12,
-    "maximum": 12
+    "minimum": "12",
+    "verified": "12",
+    "maximum": "12"
   },
   "url": "https://github.com/DKSEN404/nr-scene-fade",
   "manifest": "https://github.com/DKSEN404/nr-scene-fade/releases/latest/download/module.json",

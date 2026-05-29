@@ -1,12 +1,6 @@
 import { MODULE_ID, HOOKS_CONTEXT } from './constants.mjs';
 import * as Socket from './SocketManager.mjs';
 
-let _getRendererFn = null;
-
-export function init(getRendererFn) {
-  _getRendererFn = getRendererFn;
-}
-
 export function registerHooks() {
   Hooks.on('getSceneNavigationContext', (html, contextOptions) => {
     addSceneButtons('getSceneNavigationContext', contextOptions);

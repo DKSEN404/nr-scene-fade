@@ -1,7 +1,7 @@
 import { MODULE_ID, SETTINGS, DEFAULT_SETTING } from './constants.mjs';
 import NRSceneFade from './NRSceneFade.mjs';
 import * as SocketManager from './SocketManager.mjs';
-import { init as initContextMenu, registerHooks as registerContextHooks } from './ContextMenu.mjs';
+import { registerHooks } from './ContextMenu.mjs';
 import DefaultOptionsForm from './forms/DefaultOptionsForm.mjs';
 import { initDefaultPresets } from './presets/Registry.mjs';
 
@@ -42,9 +42,7 @@ Hooks.once('init', function () {
 
 Hooks.once('ready', function () {
   SocketManager.registerSocket();
-
-  initContextMenu(() => nrFade);
-  registerContextHooks();
+  registerHooks();
 
   game.modules.get(MODULE_ID).api = {
     play: (options) => nrFade.play(options),
