@@ -379,6 +379,10 @@
 
 /* ========== Tabs del formulario ========== */
 
+.nr-edit-form {
+  height: 100%;
+}
+
 .nr-edit-form .tabs {
   flex: 0 0 auto;
   border-bottom: 1px solid var(--color-border-light-primary);
@@ -416,12 +420,15 @@
 
 .nr-edit-form .tab {
   display: none;
-  flex: 1;
-  min-height: 0;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 0 4px;
 }
 
 .nr-edit-form .tab.active {
-  display: block;
+  display: flex;
+  flex: 1;
+  min-height: 0;
 }
 
 /* Efectos grid */

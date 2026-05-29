@@ -1,5 +1,15 @@
 # Changelog / Registro de Cambios
 
+## v1.0.7 (2026-05-29)
+
+### English
+- Fixed: `ReferenceError: theme is not defined` crash when selecting a preset (missing `const theme = preset.theme || {};`)
+- Fixed: Save button inaccessible and background section not interactive — fixed tab layout CSS (`.tab.active` now uses `display: flex` with `overflow-y: auto`, form has `height: 100%`)
+
+### Español
+- Corregido: `ReferenceError: theme is not defined` al seleccionar un preset (faltaba `const theme = preset.theme || {};`)
+- Corregido: Botón guardar inaccesible y sección fondo no interactiva — corregido layout CSS de tabs (`.tab.active` ahora usa `display: flex` con `overflow-y: auto`, formulario tiene `height: 100%`)
+
 ## v1.0.6 (2026-05-29)
 
 ### English

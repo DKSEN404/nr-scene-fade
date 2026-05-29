@@ -60,6 +60,7 @@ export default class EditTransitionForm extends DefaultOptionsForm {
       const preset = presets.get(presetId);
       if (!preset) return;
 
+      const theme = preset.theme || {};
       const target = event.currentTarget.closest('.nr-edit-form');
       Object.entries(theme).forEach(([key, value]) => {
         const input = target.querySelector(`[name="${key}"]`);
