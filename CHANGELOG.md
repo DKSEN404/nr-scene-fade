@@ -1,5 +1,13 @@
 # Changelog / Registro de Cambios
 
+## v1.0.8 (2026-05-29)
+
+### English
+- Fixed: Save button not working in Effects/Options tabs, changes not persisting, editor closing without saving — HTML5 validation blocked form submit because `bgOpacity` field was in a hidden tab (`display: none`) and not focusable. Added `novalidate` to `<form>` to disable browser validation.
+
+### Español
+- Corregido: Botón guardar no funcionaba en pestañas Efectos/Opciones, cambios no persistían, editor se cerraba sin guardar — la validación HTML5 bloqueaba el envío porque el campo `bgOpacity` estaba en una pestaña oculta (`display: none`) y no recibía focus. Se agregó `novalidate` al `<form>` para deshabilitar la validación del navegador.
+
 ## v1.0.7 (2026-05-29)
 
 ### English
