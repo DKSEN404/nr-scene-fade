@@ -124,6 +124,7 @@ export default class NRSceneFade {
 
     const html = await renderTemplate(TEMPLATES.OVERLAY, data);
     document.body.insertAdjacentHTML('beforeend', html);
+    const wrapper = document.getElementById('nr-scene-fade-overlay');
     this.#overlay = wrapper;
   }
 
