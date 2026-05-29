@@ -1,5 +1,15 @@
 # Changelog / Registro de Cambios
 
+## v1.0.4 (2026-05-29)
+
+### English
+- Fixed: Tab navigation not working in transition form (Tabs initialization now has fallback click handlers)
+- Fixed: Content tab visible by default (static `active` class as fallback)
+
+### Español
+- Corregido: Navegación por pestañas no funcionaba en el formulario de transición (inicialización de Tabs ahora con fallback de click handlers)
+- Corregido: Pestaña de Contenido visible por defecto (clase `active` estática como fallback)
+
 ## v1.0.3 (2026-05-29)
 
 ### English
