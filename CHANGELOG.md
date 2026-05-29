@@ -1,5 +1,13 @@
 # Changelog / Registro de Cambios
 
+## v1.0.9 (2026-05-29)
+
+### English
+- Fixed: Core data-flow bug — `EditTransitionForm.getData()` read `this.options` (FormApplication window config: id, title, template, etc.) instead of `this.object` (actual saved transition data). When editing, the form displayed defaults instead of saved values, and saving without changes overwrote real data with defaults. This was the root cause affecting all previous versions — all prior patches addressed symptoms (CSS, i18n, crashes) but not this fundamental data binding issue.
+
+### Español
+- Corregido: Bug fundamental de flujo de datos — `EditTransitionForm.getData()` leía `this.options` (configuración de ventana de FormApplication: id, title, template, etc.) en vez de `this.object` (los datos reales de transición guardados). Al editar, el formulario mostraba valores por defecto en lugar de los guardados, y al guardar sin cambios sobrescribía los datos reales con valores por defecto. Esta era la causa raíz que afectaba a todas las versiones anteriores — todos los parches previos trataron síntomas (CSS, i18n, crashes) pero no este problema fundamental de enlace de datos.
+
 ## v1.0.8 (2026-05-29)
 
 ### English

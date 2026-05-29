@@ -18,7 +18,7 @@ export default class EditTransitionForm extends DefaultOptionsForm {
 
   async getData() {
     const defaults = game.settings.get(MODULE_ID, SETTINGS.DEFAULT_OPTIONS) ?? DEFAULT_SETTING;
-    const data = { ...defaults, ...this.options };
+    const data = { ...defaults, ...this.object };
     const rawPresets = getPresets();
     const presets = Array.from(rawPresets.values()).map((p) => ({
       ...p,
