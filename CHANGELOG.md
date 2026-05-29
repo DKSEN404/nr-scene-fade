@@ -1,5 +1,17 @@
 # Changelog / Registro de Cambios
 
+## v0.0.4 (2026-05-29)
+
+### English
+- Fixed: Scene activation now happens immediately after fadeIn instead of after fadeOut + cleanup — scene starts loading for players while the transition plays.
+- Fixed: Close button didn't work during transition — `play()` kept running after manual `stop()`, causing stale lifecycle. Added `if (!this.#isActive) return;` guard after the display timer.
+- Changed: Close button icon from X to play icon, restyled with dark glass aesthetic (translucent background, backdrop-filter blur, gray color) to blend with any transition.
+
+### Español
+- Corregido: La activación de escena ahora ocurre inmediatamente después del fadeIn — la escena empieza a cargar para los jugadores mientras la transición se reproduce.
+- Corregido: El botón de cierre no funcionaba durante la transición — `play()` seguía ejecutándose después de un `stop()` manual. Se agregó guard `if (!this.#isActive) return;` tras el temporizador.
+- Cambiado: Icono del botón de cierre de X a play, rediseñado con estética glass oscuro (fondo translúcido, blur, color gris) para mimetizarse con cualquier transición.
+
 ## v0.0.3 (2026-05-29)
 
 ### English

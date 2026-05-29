@@ -41,6 +41,11 @@ export default class NRSceneFade {
     await this.#createOverlay(merged);
     await this.#fadeIn(merged);
 
+    if (merged.activateScene && merged.sceneId) {
+      const scene = game.scenes?.get(merged.sceneId);
+      if (scene) await scene.view();
+    }
+
     if (merged.audio) {
       this.#playAudio(merged);
     }
@@ -51,17 +56,14 @@ export default class NRSceneFade {
     const displayTime = merged.delay || 7000;
     await new Promise((r) => setTimeout(r, displayTime));
 
+    if (!this.#isActive) return;
+
     await this.#fadeOut(merged);
     this.#cleanup();
 
     if (this.#resolveCurrent) {
       this.#resolveCurrent({ forced: false });
       this.#resolveCurrent = null;
-    }
-
-    if (merged.activateScene && merged.sceneId) {
-      const scene = game.scenes?.get(merged.sceneId);
-      if (scene) await scene.view();
     }
   }
 
