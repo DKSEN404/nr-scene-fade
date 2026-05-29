@@ -97,7 +97,6 @@ export default class NRSceneFade {
   async #createOverlay(options) {
     const isVideo = this.#isVideo(options.bgImg || '');
     const sourceType = this.#getVideoType(options.bgImg || '');
-    const showCloseButton = game.user?.isGM || options.allowPlayersToEnd;
     const zIndex = (game.user?.isGM || options.showUI) ? 5000 : 1;
 
     const content = options.rawContent || options.content || '';
@@ -119,20 +118,12 @@ export default class NRSceneFade {
       bgSize: options.bgSize || 'cover',
       bgPos: options.bgPos || 'center center',
       bgOpacity: options.bgOpacity ?? 0.95,
-      showCloseButton,
       zIndex,
       fontFamily: options.fontFamily || "'Share Tech Mono', 'Courier New', monospace"
     };
 
     const html = await renderTemplate(TEMPLATES.OVERLAY, data);
     document.body.insertAdjacentHTML('beforeend', html);
-    const wrapper = document.getElementById('nr-scene-fade-overlay');
-
-    const closeBtn = wrapper.querySelector('#nr-scene-fade-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => this.#onCloseClick(options));
-    }
-
     this.#overlay = wrapper;
   }
 
@@ -207,13 +198,6 @@ export default class NRSceneFade {
       this.#audio.stop();
     }
     this.#audio = null;
-  }
-
-  #onCloseClick(options) {
-    if (game.user?.isGM && options.gmEndAll) {
-      Socket.executeForEveryone({ action: 'stop' });
-    }
-    this.stop(false);
   }
 
   async executeAction(options) {

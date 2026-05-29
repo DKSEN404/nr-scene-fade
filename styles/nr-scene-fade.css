@@ -75,7 +75,13 @@
 }
 
 #nr-cfx-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
+  z-index: 5001;
 }
 
 /* ─── Contenedor de contenido ─── */
@@ -88,32 +94,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-/* ─── Botón de cierre ─── */
-#nr-scene-fade-close {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5003;
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.35);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 14px;
-  padding: 8px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-#nr-scene-fade-close:hover {
-  background: rgba(0, 0, 0, 0.55);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ─── Efecto: Scanlines ─── */

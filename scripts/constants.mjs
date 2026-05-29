@@ -20,7 +20,6 @@ export const DEFAULT_SETTING = {
   fadeOut: 1000,
   volume: 0.7,
   audioLoop: false,
-  allowPlayersToEnd: true,
   gmEndAll: true,
   showUI: false,
   activateScene: false,
