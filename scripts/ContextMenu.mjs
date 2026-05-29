@@ -67,7 +67,7 @@ function addSceneButtons(hookName, contextOptions) {
       const transition = scene.getFlag(MODULE_ID, 'transition');
       if (!transition) return;
       const { default: EditForm } = await import('./forms/EditTransitionForm.mjs');
-      new EditForm(transition.options.sceneID, transition.options).render(true);
+      new EditForm(scene.id, transition.options).render(true);
     }
   });
 
