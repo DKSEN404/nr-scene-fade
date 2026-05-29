@@ -34,6 +34,10 @@ export default class NRSceneFade {
     const defaults = game.settings.get(MODULE_ID, 'default-options') || {};
     const merged = foundry.utils.mergeObject(foundry.utils.mergeObject({}, defaults), options);
 
+    if (typeof merged.bgImg !== 'string') merged.bgImg = '';
+    if (typeof merged.audio !== 'string') merged.audio = '';
+    if (typeof merged.content !== 'string') merged.content = '';
+
     await this.#createOverlay(merged);
     await this.#fadeIn(merged);
 
@@ -147,13 +151,13 @@ export default class NRSceneFade {
   }
 
   #isVideo(src) {
-    if (!src) return false;
+    if (!src || typeof src !== 'string') return false;
     const ext = src.split('.').pop()?.split('?')[0]?.toLowerCase();
     return ext === 'webm' || ext === 'mp4';
   }
 
   #getVideoType(src) {
-    if (!src) return 'video/mp4';
+    if (!src || typeof src !== 'string') return 'video/mp4';
     if (src.toLowerCase().endsWith('webm')) return 'video/webm';
     return 'video/mp4';
   }

@@ -1,5 +1,19 @@
 # Changelog / Registro de Cambios
 
+## v1.0.3 (2026-05-29)
+
+### English
+- Fixed: 4 remaining i18n paths missing `.other` segment (allowPlayersToEnd, gmEndAll, gmHide, activateScene)
+- Fixed: `src.split is not a function` crash with legacy saved transitions — added `typeof` guard in `#isVideo`/`#getVideoType` and sanitize `bgImg`/`audio`/`content` in `play()`
+- Added: Tabbed form layout — Content, Effects, Options tabs using Foundry v12 `Tabs` API
+- Improved: Effects displayed in 2-column grid to prevent overlapping labels
+
+### Español
+- Corregido: 4 rutas i18n faltantes con segmento `.other` (allowPlayersToEnd, gmEndAll, gmHide, activateScene)
+- Corregido: Error `src.split is not a function` con transiciones guardadas en versiones anteriores — se agregó guard `typeof` en `#isVideo`/`#getVideoType` y sanitización de `bgImg`/`audio`/`content` en `play()`
+- Añadido: Diseño de formulario con pestañas — pestañas Contenido, Efectos, Opciones usando la API `Tabs` de Foundry v12
+- Mejorado: Efectos en cuadrícula de 2 columnas para evitar solapamiento de etiquetas
+
 ## v1.0.2 (2026-05-29)
 
 ### English

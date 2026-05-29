@@ -29,6 +29,12 @@ export default class DefaultOptionsForm extends FormApplication {
 
   activateListeners(html) {
     super.activateListeners(html);
+
+    const tabs = html.find('.tabs');
+    if (tabs.length) {
+      new Tabs({ nav: tabs[0], content: html.find('.tabbed-content')[0] });
+    }
+
     html.on('click', '[data-action="reset"]', async () => {
       await game.settings.set(MODULE_ID, SETTINGS.DEFAULT_OPTIONS, DEFAULT_SETTING);
       this.render(true);

@@ -22,6 +22,11 @@
     },
     "editTransition": "Editar Transición de Escena",
     "form": {
+      "tab": {
+        "content": "Contenido",
+        "effects": "Efectos",
+        "options": "Opciones"
+      },
       "preset": {
         "header": "Preset",
         "label": "Tema Visual"

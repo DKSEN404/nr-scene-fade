@@ -376,3 +376,69 @@
   font-size: 0.7em;
   margin-top: 12px;
 }
+
+/* ========== Tabs del formulario ========== */
+
+.nr-edit-form .tabs {
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nr-edit-form .tabs .item {
+  flex: 1;
+  text-align: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  color: var(--color-text-light-primary);
+  font-size: var(--font-size-14);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.nr-edit-form .tabs .item:hover {
+  color: var(--color-text-hyperlink);
+}
+
+.nr-edit-form .tabs .item.active {
+  border-bottom-color: var(--color-border-highlight);
+  color: var(--color-text-light-highlight);
+}
+
+.nr-edit-form .tabbed-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nr-edit-form .tab {
+  display: none;
+  flex: 1;
+  min-height: 0;
+}
+
+.nr-edit-form .tab.active {
+  display: block;
+}
+
+/* Efectos grid */
+
+.nr-edit-form .effects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  padding: 8px 0 12px;
+}
+
+.nr-edit-form .effects-grid .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-13);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
