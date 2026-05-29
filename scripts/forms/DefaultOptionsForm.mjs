@@ -30,42 +30,25 @@ export default class DefaultOptionsForm extends FormApplication {
   activateListeners(html) {
     super.activateListeners(html);
 
-    const form = html[0];
-    if (form) {
-      const nav = form.querySelector('.tabs');
-      const tabbed = form.querySelector('.tabbed-content');
-      if (nav && tabbed) {
-        try {
-          new Tabs({ nav, content: tabbed });
-        } catch {
-          this.#initTabsFallback(nav, tabbed);
-        }
-      }
-    }
+    html.on('click', '.tabs .item', (event) => {
+      event.preventDefault();
+      const item = event.currentTarget;
+      const tabId = item.dataset.tab;
+      const nav = item.closest('.tabs');
+      const tabbed = nav?.nextElementSibling;
+      if (!nav || !tabbed) return;
+
+      nav.querySelectorAll('.item').forEach((i) => i.classList.remove('active'));
+      tabbed.querySelectorAll('.tab').forEach((p) => p.classList.remove('active'));
+
+      item.classList.add('active');
+      const panel = tabbed.querySelector(`.tab[data-tab="${tabId}"]`);
+      if (panel) panel.classList.add('active');
+    });
 
     html.on('click', '[data-action="reset"]', async () => {
       await game.settings.set(MODULE_ID, SETTINGS.DEFAULT_OPTIONS, DEFAULT_SETTING);
       this.render(true);
-    });
-  }
-
-  #initTabsFallback(nav, tabbed) {
-    const items = nav.querySelectorAll('.item');
-    const panels = tabbed.querySelectorAll('.tab');
-    if (!items.length || !panels.length) return;
-
-    items.forEach((item) => {
-      item.addEventListener('click', (event) => {
-        event.preventDefault();
-        const tabId = item.dataset.tab;
-
-        items.forEach((i) => i.classList.remove('active'));
-        panels.forEach((p) => p.classList.remove('active'));
-
-        item.classList.add('active');
-        const panel = tabbed.querySelector(`.tab[data-tab="${tabId}"]`);
-        if (panel) panel.classList.add('active');
-      });
     });
   }
 

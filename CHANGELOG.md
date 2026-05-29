@@ -1,5 +1,15 @@
 # Changelog / Registro de Cambios
 
+## v1.0.5 (2026-05-29)
+
+### English
+- Fixed: Tab switching not working — replaced `new Tabs()` + private method with jQuery event delegation
+- Fixed: Save button not working — private method `#initTabsFallback` broke `activateListeners` execution chain
+
+### Español
+- Corregido: Cambio de pestañas no funcionaba — reemplazado `new Tabs()` + método privado por delegación de eventos jQuery
+- Corregido: Botón de guardar no funcionaba — el método privado `#initTabsFallback` rompía la cadena de ejecución de `activateListeners`
+
 ## v1.0.4 (2026-05-29)
 
 ### English
