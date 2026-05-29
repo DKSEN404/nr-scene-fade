@@ -1,6 +1,6 @@
-import { MODULE_ID, EFFECTS_DOM, EFFECTS_CANVAS } from '../constants.mjs';
-import * as DOMEffects from '../effects/DOMEffects.mjs';
-import * as CanvasEffects from '../effects/CanvasEffects.mjs';
+import { MODULE_ID, EFFECTS_DOM, EFFECTS_CANVAS } from './constants.mjs';
+import * as DOMEffects from './effects/DOMEffects.mjs';
+import * as CanvasEffects from './effects/CanvasEffects.mjs';
 
 export class TransitionRenderer {
   #options;
