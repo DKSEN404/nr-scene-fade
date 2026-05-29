@@ -98,7 +98,7 @@ export default class NRSceneFade {
     const isVideo = this.#isVideo(options.bgImg || '');
     const sourceType = this.#getVideoType(options.bgImg || '');
     const showCloseButton = game.user?.isGM || options.allowPlayersToEnd;
-    const zIndex = game.user?.isGM || options.showUI ? 5000 : 1;
+    const zIndex = (game.user?.isGM || options.showUI) ? 5000 : 1;
 
     const content = options.rawContent || options.content || '';
 

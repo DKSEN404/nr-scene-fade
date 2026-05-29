@@ -48,6 +48,7 @@ export default class EditTransitionForm extends DefaultOptionsForm {
     const expanded = foundry.utils.expandObject(formData);
     expanded.domEffects = expanded.domEffects || [];
     expanded.canvasEffects = expanded.canvasEffects || [];
+    if (!('allowPlayersToEnd' in expanded)) expanded.allowPlayersToEnd = false;
     const scene = game.scenes?.get(this.sceneID);
     if (scene) {
       await scene.setFlag(MODULE_ID, 'transition', { options: expanded });

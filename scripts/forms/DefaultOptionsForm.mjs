@@ -61,6 +61,7 @@ export default class DefaultOptionsForm extends FormApplication {
     const expanded = foundry.utils.expandObject(formData);
     expanded.domEffects = expanded.domEffects || [];
     expanded.canvasEffects = expanded.canvasEffects || [];
+    if (!('allowPlayersToEnd' in expanded)) expanded.allowPlayersToEnd = false;
     await game.settings.set(MODULE_ID, SETTINGS.DEFAULT_OPTIONS, expanded);
   }
 }

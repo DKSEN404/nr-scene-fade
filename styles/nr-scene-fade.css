@@ -74,6 +74,10 @@
   z-index: 5001;
 }
 
+#nr-cfx-canvas {
+  pointer-events: none;
+}
+
 /* ─── Contenedor de contenido ─── */
 .nr-content-wrapper {
   position: relative;
